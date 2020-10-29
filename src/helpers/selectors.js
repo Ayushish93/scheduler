@@ -32,13 +32,13 @@ export  function getAppointmentsForDay(state, day) {
 export function getInterview(state, interview) {
 
   let resultObj = {};
-  let interviewerObj = state.interviewer;
+  let interviewerObj = state.interviewers;
   let interviewerInfoObj = {}; 
 
   
   
   if(interview) {
-    console.log("interviw , ", interview);
+    
     resultObj['student'] = interview['student'];
    
     if(interviewerObj[interview['interviewer']]) {
@@ -61,17 +61,50 @@ export function getInterview(state, interview) {
   } else {
     return null;
   }
-}
+};
 
 
 
 
 
-// {  
-//   "student": "Lydia Miller-Jones",
-//   "interviewer": {  
-//     "id": 1,
-//     "name": "Sylvia Palmer",
-//     "avatar": "https://i.imgur.com/LpaY82x.png"
-//   }
-// }
+export  function getInterviewersForDay(state, day) {
+  //... returns an array of appointments for that day
+  // console.log("state ," ,state );
+  // console.log("day ", day);
+  console.log("state",state);
+  const arrOfAppointmentsOfTheDay = function() {
+
+    for(let ele of state.days) {
+      
+        if(ele.name === day ) {
+          // console.log("element, ", ele.appointments);
+          return ele.appointments;
+        }
+    }
+  }
+  
+  let appointmentsOfTheDay = arrOfAppointmentsOfTheDay();
+ 
+  
+  if(appointmentsOfTheDay) {
+    let appointmentsArr = [];
+    
+    for(let appointment of appointmentsOfTheDay) {
+      
+      if(state.appointments[appointment]) {
+        
+        if(state.appointments[appointment]['interview']) {
+          let interviewer = state.appointments[appointment]['interview']['interviewer'];
+          
+          appointmentsArr.push(state.interviewers[interviewer])
+        }
+        
+      }
+    }
+    
+     return appointmentsArr;
+  }
+  else {
+    return [];
+  }
+};

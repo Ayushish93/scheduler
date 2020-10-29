@@ -4,7 +4,7 @@ import "components/Application.scss";
 import DayList from "components/DayList";
 import "components/Appointment";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors.js";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors.js";
 
 
 
@@ -79,7 +79,7 @@ export default function Application(props) {
     ]).then((all) => {
       // set your states here with the correct values...
       
-      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewer: all[2].data }));
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   },[]);
 
@@ -118,8 +118,9 @@ export default function Application(props) {
           
           
            const interview = getInterview(state, appointment.interview);
+           const interviewers = getInterviewersForDay(state, state.day);
            
-           return <Appointment key={appointment.id} {...appointment} interview={interview}  />
+           return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewers} />
           
         })}
         <Appointment key="last" time="5pm" />
