@@ -70,7 +70,7 @@ export default function Application(props) {
     appointments: {}
   });
 
-   async function bookInterview(id, interview) {
+  async function bookInterview(id, interview) {
 
     const appointment = {
       ...state.appointments[id],
@@ -80,25 +80,56 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-
+    
     // updaing db with the new appointment
     let url = `/api/appointments/${id}`;
+  
+    const result = await axios.put(url, { ...appointment })
+    .then(res => {
+      
+      setState({
+        ...state,
+        appointments
+      });
+      
+
+    })
+    .catch(err => console.log("err", err))
+    return result;
+
+  
+  }
+
+  async function cancelInterview(id) {
     
-     const result = await axios.put(url, { interview })
-      .then(res => {
-        
-        setState({
-          ...state,
-          appointments
-        });
-        
+    const appointment = {
+      ...state.appointments[id],
+       interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
 
-      })
-      .catch(err => console.log("err", err))
-      return result;
+    let url = `/api/appointments/${id}`;
+  
+    const result = await axios.delete(url,{...appointment})
+    .then(res => {
+      
+      setState({
+        ...state,
+        appointments
+      });
+      
 
+    })
+    .catch(err => console.log("err", err))
+    return result;
+    
     
   }
+
+
 
   let dailyAppointments = [];
 
@@ -154,7 +185,7 @@ export default function Application(props) {
           const interview = getInterview(state, appointment.interview);
           const interviewers = getInterviewersForDay(state, state.day);
 
-          return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewers} bookInterview={bookInterview} />
+          return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewers} bookInterview={bookInterview} cancelInterview={cancelInterview} />
 
         })}
         <Appointment key="last" time="5pm" />

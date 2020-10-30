@@ -17,6 +17,7 @@ export default function useVisualMode(initial) {
     if(history.length >= 1) 
       setmode(history[history.length - 1]);
   }
+  
   return { mode, transition, back };
  
 };
