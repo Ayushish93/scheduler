@@ -71,38 +71,33 @@ export  function getInterviewersForDay(state, day) {
   //... returns an array of appointments for that day
   // console.log("state ," ,state );
   // console.log("day ", day);
-  console.log("state",state);
-  const arrOfAppointmentsOfTheDay = function() {
+  
+  const arrOfinterviewersOfTheDay = function() {
 
     for(let ele of state.days) {
       
         if(ele.name === day ) {
           // console.log("element, ", ele.appointments);
-          return ele.appointments;
+          return ele.interviewers;
         }
     }
   }
   
-  let appointmentsOfTheDay = arrOfAppointmentsOfTheDay();
- 
+  let interviewersOfTheDay = arrOfinterviewersOfTheDay();
   
-  if(appointmentsOfTheDay) {
-    let appointmentsArr = [];
+  
+  if(interviewersOfTheDay) {
+    let interviewersArr = [];
     
-    for(let appointment of appointmentsOfTheDay) {
+    for(let interviewer of interviewersOfTheDay) {
       
-      if(state.appointments[appointment]) {
-        
-        if(state.appointments[appointment]['interview']) {
-          let interviewer = state.appointments[appointment]['interview']['interviewer'];
-          
-          appointmentsArr.push(state.interviewers[interviewer])
+        if(state.interviewers[interviewer]) {
+          interviewersArr.push(state.interviewers[interviewer])
         }
-        
-      }
+      
     }
     
-     return appointmentsArr;
+     return interviewersArr;
   }
   else {
     return [];
