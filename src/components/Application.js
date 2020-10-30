@@ -70,7 +70,7 @@ export default function Application(props) {
     appointments: {}
   });
 
-  async function bookInterview(id, interview) {
+   function bookInterview(id, interview) {
 
     const appointment = {
       ...state.appointments[id],
@@ -84,7 +84,7 @@ export default function Application(props) {
     // updaing db with the new appointment
     let url = `/api/appointments/${id}`;
   
-    const result = await axios.put(url, { ...appointment })
+    return axios.put(url, { ...appointment })
     .then(res => {
       
       setState({
@@ -94,13 +94,10 @@ export default function Application(props) {
       
 
     })
-    .catch(err => console.log("err", err))
-    return result;
 
-  
   }
 
-  async function cancelInterview(id) {
+   function cancelInterview(id) {
     
     const appointment = {
       ...state.appointments[id],
@@ -113,20 +110,16 @@ export default function Application(props) {
 
     let url = `/api/appointments/${id}`;
   
-    const result = await axios.delete(url,{...appointment})
+    return  axios.delete(url,{...appointment})
     .then(res => {
       
       setState({
         ...state,
         appointments
       });
-      
-
+    
     })
-    .catch(err => console.log("err", err))
-    return result;
-    
-    
+     
   }
 
 
