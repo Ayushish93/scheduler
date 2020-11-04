@@ -6,19 +6,19 @@ Interview Scheduler is a single page application (SPA) that allows user to book 
 !["Screenshot of appointments dashboard"](https://github.com/Ayushish93/scheduler/blob/master/docs/Appointments.png?raw=true)
 
 ### Booking Appointment
-!["Screenshot of booking appointment"]()
+!["Screenshot of booking appointment"](https://github.com/Ayushish93/scheduler/blob/master/docs/Booking.png?raw=true)
 
 ### Editing Appointment
-!["Screenshot of editing appointment"]()
+!["Screenshot of editing appointment"](https://github.com/Ayushish93/scheduler/blob/master/docs/Edit.png?raw=true)
 
 ### Cancel Appointment
-!["Screenshot of cancel appointment"]()
+!["Screenshot of cancel appointment"](https://github.com/Ayushish93/scheduler/blob/master/docs/Cancel.png?raw=true)
 
 ### Confirmation 
-!["Screenshot of confirmation before deleting"]()
+!["Screenshot of confirmation before deleting"](https://github.com/Ayushish93/scheduler/blob/master/docs/Confirmation.png?raw=true)
 
 ### Error Message when appointment can not be deleted
-!["Screenshot of error message appointment"]()
+!["Screenshot of error message appointment"](https://github.com/Ayushish93/scheduler/blob/master/docs/ErrorMessage.png?raw=true)
 
 
 
