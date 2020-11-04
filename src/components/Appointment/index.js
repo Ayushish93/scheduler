@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "components/Appointment/styles.scss";
 import "components/Appointment/Header";
 import Show from "components/Appointment/Show";
@@ -9,8 +9,6 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Error from "components/Appointment/Error";
 import useVisualMode from "hooks/useVisualMode";
-import InterviewerList from "components/InterviewerList";
-import { create } from "react-test-renderer";
 import Form from "./Form";
 
 
@@ -39,8 +37,9 @@ export default function Appointment(props) {
     
     
   }  
-
-   function save(name, interviewer) {
+  
+  
+  function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
@@ -52,10 +51,23 @@ export default function Appointment(props) {
     .catch(err => transition(ERROR_SAVE, true))
   }
 
+  function update(name, interviewer) {
+    
+    const interview = {
+      student: name,
+      interviewer
+    };
+    
+    transition(SAVING);
+     props.updateInterview(props.id, interview)
+    .then(res => transition(SHOW))
+    .catch(err => transition(ERROR_SAVE, true))
+  }
+
   return (
 
 
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {/* {props.interview?< Show student={props.interview.student} interviewer= {props.interview.interviewer}/>:<Empty/>} */}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
@@ -99,7 +111,7 @@ export default function Appointment(props) {
 
           interviewers={props.interviewers}
           onCancel={() => transition(SHOW)}
-          onSave={save}
+          onSave={update}
 
         />
       )}
