@@ -76,7 +76,7 @@ describe("Application", () => {
 
     // 7. Wait until the element with the "Add" button is displayed.
     await waitForElement(() => getByAltText(appointment, "Add"));
-    debug();
+    
     // 8. Check that the DayListItem with the text "Monday" also has the text "2 spots remaining".
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")

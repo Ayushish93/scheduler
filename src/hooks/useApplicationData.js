@@ -17,9 +17,10 @@ export default function useApplicationData() {
     interviewers: {},
     appointments: {}
   });
+
   
   function updateInterview(id, interview) {
-    console.log("from update");
+    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -50,7 +51,7 @@ export default function useApplicationData() {
     
 
   function bookInterview(id, interview) {
-    console.log("from bookinterview");
+    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -65,10 +66,20 @@ export default function useApplicationData() {
     const foundDay = state.days.find((dayEntry) => {
       if(dayEntry.appointments.includes(id)) {
         // dayEntry.spots -= 1;
+    
         return dayEntry;
 
       }
     })
+    
+    // logic to implement later to get number of spots remaining single function for all
+    // let count = 0;
+    //  const res = foundDay.appointments.forEach((appoin) =>{
+    //       if(state.appointments[appoin].interview === null){
+    //         count++;
+    //       }
+    //     })
+    //   console.log("res ", count);
     
     foundDay.spots -= 1;
 
@@ -86,13 +97,12 @@ export default function useApplicationData() {
   
     return axios.put(url, { ...appointment })
       .then(res => {
-        
+
         setState({
           ...state,
           appointments,
           days
         });
-        
   
       })
 
