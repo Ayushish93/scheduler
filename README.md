@@ -3,7 +3,7 @@ Interview Scheduler is a single page application (SPA) that allows user to book 
 
 # Final Product
 ### Appointments Dashboard
-!["Screenshot of appointments dashboard"]()
+!["Screenshot of appointments dashboard"](https://github.com/Ayushish93/scheduler/blob/master/docs/Appointments.png?raw=true)
 
 ### Booking Appointment
 !["Screenshot of booking appointment"]()
@@ -49,9 +49,3 @@ npm test
 
 npm run storybook
 
-
-## Heroku
-
-psql -h localhost -p 5432 -U pqqbuwnxmmtbjs -d d4kplaj6q04qoo
-
-password db9831cee9890e93042cf0f902cfec224ee604812fbab74a2460adaef961fbf5
