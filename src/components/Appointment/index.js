@@ -21,6 +21,7 @@ const DELETE = "DELETE";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE ="ERROR_DELETE";
+const ERROR_EDIT ="ERROR_EDIT";
 
 export default function Appointment(props) {
 
@@ -28,6 +29,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+    // cancel function to cancel  appointment and change state
    function cancel() {
     
     transition(DELETE, true);
@@ -38,7 +40,7 @@ export default function Appointment(props) {
     
   }  
   
-  
+    // save function to save appointment and change state
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -51,6 +53,7 @@ export default function Appointment(props) {
     .catch(err => transition(ERROR_SAVE, true))
   }
 
+    // update function to update appointment and change state
   function update(name, interviewer) {
     
     const interview = {
@@ -59,9 +62,9 @@ export default function Appointment(props) {
     };
     
     transition(SAVING);
-     props.updateInterview(props.id, interview)
+    props.bookInterview(props.id, interview)
     .then(res => transition(SHOW))
-    .catch(err => transition(ERROR_SAVE, true))
+    .catch(err => transition(ERROR_EDIT, true))
   }
 
   return (
@@ -117,7 +120,8 @@ export default function Appointment(props) {
       )}
 
       {mode === ERROR_SAVE && <Error message={"could not save the appointment"} onClose={() => transition(EMPTY)}/>}
-      {mode === ERROR_DELETE && <Error message={"could not delete the appointment"} onClose={() => transition(SHOW)}/>}  
+      {mode === ERROR_DELETE && <Error message={"could not delete the appointment"} onClose={() => transition(SHOW)}/>}
+      {mode === ERROR_EDIT && <Error message={"could not update the appointment"} onClose={() => transition(SHOW)}/>}  
     </article>
   );
 }

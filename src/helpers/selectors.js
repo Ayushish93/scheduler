@@ -1,7 +1,7 @@
 // import { NULL } from "node-sass";
-
+//... returns an array of appointments for that day
 export  function getAppointmentsForDay(state, day) {
-  //... returns an array of appointments for that day
+  
   const arrOfAppointmentsOfTheDay = function() {
 
     for(let ele of state.days) {
@@ -28,7 +28,7 @@ export  function getAppointmentsForDay(state, day) {
   }
 };
 
-
+// function returns interview
 export function getInterview(state, interview) {
 
   let resultObj = {};
@@ -66,18 +66,16 @@ export function getInterview(state, interview) {
 
 
 
-
+// function returns interviewers for the day
 export  function getInterviewersForDay(state, day) {
-  //... returns an array of appointments for that day
-  // console.log("state ," ,state );
-  // console.log("day ", day);
+  
   
   const arrOfinterviewersOfTheDay = function() {
 
     for(let ele of state.days) {
       
         if(ele.name === day ) {
-          // console.log("element, ", ele.appointments);
+          
           return ele.interviewers;
         }
     }
